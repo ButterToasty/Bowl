@@ -1,4 +1,4 @@
-gh clone --no-checkout vincent-he-gay/vincent-he-gay.github.io
+git clone --no-checkout vincent-he-gay/vincent-he-gay.github.io
 
 cd vincent-he-gay
 
