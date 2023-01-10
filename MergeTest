@@ -1,0 +1,7 @@
+gh clone --no-checkout vincent-he-gay/vincent-he-gay.github.io
+
+cd vincent-he-gay
+
+git sparse-checkout init --cone
+
+git sparse-checkout set tree/main/games/vex3 
