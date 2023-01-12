@@ -101,7 +101,7 @@ h1.title {
     font-weight: bold;
     color: rgba($text-color, .9);
     z-index: 100;
-    @include animation(move-up 600ms ease-in);
+    @include animation(move-up 720ms ease-in);
     @include animation-fill-mode(both);
   }
 }
