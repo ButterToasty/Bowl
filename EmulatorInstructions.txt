@@ -1,0 +1,9 @@
+Chromebook Instructions
+
+1. Go to the rom website and download a game
+2. Open the emulator website
+3. Open your files and open the zip file for the game
+4. Run the game file (Does not actually run the game)
+5. Click the red button at the bottom of the emulator website
+6. Go to the recent tab in your files and open the game file
+7. Wait for the game to load and enjoy
