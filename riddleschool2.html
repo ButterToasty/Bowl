@@ -3,6 +3,101 @@
 
 
 <head> 
+  <style>
+
+
+@keyframes glow {
+  0%   {border: 8px solid red;}
+  10%  {border: 8px solid orange;}
+  20%  {border: 8px solid yellow;}
+  30%  {border: 8px solid green;}
+  40% {border: 8px solid blue;}
+  50% {border: 8px solid indigo;}
+  60% {border: 8px solid blue;}
+  70% {border: 8px solid green;}
+  80% {border: 8px solid yellow;}
+  90% {border: 8px solid orange;}
+  100% {border: 8px solid red;}
+}
+
+
+/* The element to apply the animation to */
+p {
+  border: 8px solid black;
+  position: relative;
+  animation-name: glow;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  color: white;
+  font-family: Arial Black;
+  font-size: 160%;
+  border-radius: 8px;
+  padding: 15px;
+  background: -webkit-linear-gradient(Black, Red, Black, Orange, Black, Yellow, Black, Green, Black, Blue, Black, Indigo, Black, Purple, Black, Indigo, Black, Blue, Black, Green, Black, Yellow, Black, Orange, Black, Red, Black);
+	-webkit-background-clip;
+  
+}
+
+ a {
+	font-family: Comic Sans MS;
+	font-size: 130%;
+	background: -webkit-linear-gradient(white, white);
+	-webkit-background-clip: text;
+    	-webkit-text-fill-color: transparent;
+	}
+	
+
+
+a:hover {
+  background: -webkit-linear-gradient(Black,Green, Lime, Green, Black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+th a {
+	font-family: Comic Sans MS;
+	font-size: 130%;
+	background: -webkit-linear-gradient(Black, Red, Crimson,  Black);
+	-webkit-background-clip: text;
+    	-webkit-text-fill-color: transparent;
+	}
+	
+
+
+th a:hover {
+  background: -webkit-linear-gradient(Black,Green, Lime, Green, Black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+  tr a {
+	font-family: Comic Sans MS;
+	font-size: 130%;
+	background: -webkit-linear-gradient(Black, Red, Crimson,  Black);
+	-webkit-background-clip: text;
+    	-webkit-text-fill-color: transparent;
+	}
+	
+
+
+tr a:hover {
+  background: -webkit-linear-gradient(Black,Green, Lime, Green, Black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+b {
+	font-family: Comic Sans MS;
+	font-size: 130%;
+	background: -webkit-linear-gradient(Black, White, Black);
+	-webkit-background-clip: text;
+    	-webkit-text-fill-color: transparent;
+	}
+
+</style>
   <title> 
     ButterToasty's Bowl 
   </title> 
