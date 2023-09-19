@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 
 <html>
@@ -25,13 +26,18 @@
   100% {border: 8px solid red;}
 }
 
+@keyframes wavy{
+    0% {transform: rotate(-.3deg)}
+    50% {transform: rotate(.3deg)}
+    100% {transform: rotate(-.3deg)}
+}
 
 /* The element to apply the animation to */
 p {
   border: 8px solid black;
   position: relative;
-  animation-name: glow;
-  animation-duration: 10s;
+  animation-name: glow, wavy;
+  animation-duration: 10s, 4s;
   animation-iteration-count: infinite;
   color: white;
   font-family: Arial Black;
