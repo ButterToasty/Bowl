@@ -16,7 +16,7 @@
   <link rel="icon" href="./favicon.ico"/> 
 </head>
   <body>
-    <a href = "https://buttertoasty.github.io/Bowl/">Main Menu</a>
+    
 	  <style>
 	  
 a{
@@ -43,11 +43,23 @@ n{
   padding: 12px;
   background: -webkit-linear-gradient( Red, Black, Orange, Black, Yellow, Black, Green, Black, Blue, Black, Indigo, Black, Purple, Black, Indigo, Black, Blue, Black, Green, Black, Yellow, Black, Orange, Black, Red, Black);
 }
+@keyframes panBackground {
+    0% {
+      background-position: 0% 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
 	  
 body {
-  background: url(https://buttertoasty.github.io/Bowl/favicon.ico);
-  background-color: #FFD984;
-}
+    margin: 0;
+    padding: 0;
+    background-color: rgb(244, 234, 149)background-image: url("newBT.png");
+    background-size: 10%;
+    animation: panBackground 20s linear infinite;
+background-color: rgb(244, 234, 149)
+  }
 </style>
 	<body style="background-color: #000000; margin: 0px; overflow: hidden;">
 		<iframe src="./inframe.html" style="display: block; border: none; width: 600px; height: 600px; margin: 0px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);"></iframe>
