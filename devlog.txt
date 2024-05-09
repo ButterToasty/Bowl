@@ -1,0 +1,18 @@
+New Games:
+- Happy Wheels
+- Strike Force Heroes 3
+- Watermelon/Suika Game
+- Swords and Souls
+
+Games Coming Soon:
+- The Deepest Sword (Fix)
+- Fatal Fury: KOF
+- Plinko
+- Slots
+- Friday Night Funkin' (Fix)
+- FNAF 1 (Fix)
+
+Other Stuff:
+- Removed all of the google games (They didn't work and you can just look them up)
+- I'll create a search bar or smth for games soon
+- Added a form for bug reports
