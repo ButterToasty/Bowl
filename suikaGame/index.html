@@ -27,6 +27,19 @@
       --col-white: #fff;
     }
 
+    .lal {
+    border: 8px solid black;
+  right: -15px;
+  position: fixed;
+  top: -8px;
+  color: white;
+  font-family: Arial Black;
+  font-size: 90%;
+  border-radius: 8px;
+  padding: 12px;
+  background: -webkit-linear-gradient( Red, Black, Orange, Black, Yellow, Black, Green, Black, Blue, Black, Indigo, Black, Purple, Black, Indigo, Black, Blue, Black, Green, Black, Yellow, Black, Orange, Black, Red, Black);
+}
+
     * {
       box-sizing: border-box;
       padding: 0;
@@ -129,7 +142,7 @@
     .rules{
       position: absolute;
       top: 20px;
-      left: 30px;
+      left: 20px;
     }
 
     .game-status-item {
@@ -159,6 +172,7 @@
   </style>
 </head>
 <body>
+  <a class = lal href = "https://buttertoasty.github.io/Bowl/">Main Menu</a>
   <img class= rules src="./SuikaRules.png">
   <div class="container">
     <div id="game-canvas">

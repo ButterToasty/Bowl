@@ -11,6 +11,7 @@ Games Coming Soon:
 - Slots
 - Friday Night Funkin' (Fix)
 - FNAF 1 (Fix)
+- Solar Smash
 
 Other Stuff:
 - Removed all of the google games (They didn't work and you can just look them up)
