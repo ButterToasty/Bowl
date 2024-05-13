@@ -1,5 +1,5 @@
 New Games:
-- I'ma just add all of the "coming soon" games all at once so keep requesting
+- I'll prolly update on Tuesday
 
 Games Coming Soon:
 - Super Mario Flash 2 
@@ -18,8 +18,9 @@ Games Coming Soon:
 - FNAF 1 (Fix)
 - Solar Smash
 - Mario NES
+- Getaway Shootout
+- Melon Playground
+- Wrastling
 
 Other Stuff:
-- Removed all of the google games (They didn't work and you can just look them up)
-- I'll create a search bar or smth for games soon
-- Added a form for bug reports
+- Category sort coming soon (If I feel like making it)
