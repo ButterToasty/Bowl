@@ -7,14 +7,17 @@
             <div id="game"></div>
         </div>
         <script>
-            EJS_player = "#game";
-            EJS_core = "mame";
-            EJS_gameName = "Real Bout Fatal Fury 2";
-            EJS_color = "#0064ff";
+            window.EJS_player = "#game";
+                window.EJS_gameName = parts.shift();
+                window.EJS_biosUrl = "rbff2h.zip";
+                window.EJS_gameUrl = "rbff2h.zip";;
+                window.EJS_core = "mame2003";
+                window.EJS_pathtodata = "data/";
+                window.EJS_startOnLoaded = true;
+                window.EJS_DEBUG_XX = enableDebug;
+                window.EJS_disableDatabases = true;
+                window.EJS_threads = enableThreads;
             EJS_startOnLoaded = true;
-            EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-            EJS_gameUrl = "rbff2h.zip";
-        </script>
         <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
     </body>
 </html>
