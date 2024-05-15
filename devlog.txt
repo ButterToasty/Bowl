@@ -12,7 +12,7 @@ New Games:
 - learn 2 fly 3
 - Fatal Fury
 - Marvel V.S. Capcom
-- Ultimate Mortal Kombat 3
+- MK4
 
 Games Coming Soon:
 - The Deepest Sword (Fix)
@@ -26,4 +26,6 @@ Games Coming Soon:
 - Wrastling
 
 Other Stuff:
-I had to cut some games from the update since they're web-based
+- I had to cut some games from the update since they're web-based or would take too long (I have things planned)
+- I'ma add the game category thing soon
+

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>Plinko</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta id="viewport" name="viewport"
+        content="width=device-width,height = device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="google" content="notranslate" />
+    <meta name="robots" content="noindex">
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        #GameWrapper {
+            height: 100%;
+            width: 100%;
+        }
+
+        @font-face {
+            font-family: 'icomoon';
+            src: url('ui/fonts/icons/icomoon.eot?dbrolm');
+            src: url('ui/fonts/icons/icomoon.eot?dbrolm#iefix') format('embedded-opentype'),
+                url('ui/fonts/icons/icomoon.woff2?dbrolm') format('woff2'),
+                url('ui/fonts/icons/icomoon.ttf?dbrolm') format('truetype'),
+                url('ui/fonts/icons/icomoon.woff?dbrolm') format('woff'),
+                url('ui/fonts/icons/icomoon.svg?dbrolm#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+    </style>
+    <script type="text/javascript" src="vendor/promise-polyfill.min.js"></script>
+    <script type="text/javascript" src="vendor/array-find-polyfill.min.js"></script>
+    <script>
+        window.oncontextmenu = function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            return false;
+        };
+    </script>
+    <link rel="stylesheet" href="ui.min.css">
+
+</head>
+
+<body data-theme="default">
+    <div class="HacksawCasinoGameContainer" id="GameWrapper">
+        <canvas id="webgl" style="width:100%;height:100%"></canvas>
+    </div>
+
+    <div class="HacksawCasinoUiContainer" id="hacksaw-casino" data-theme="default" data-state=""
+        data-orientation="landscape" data-channel="desktop">
+        <div id="ProgressIndicator" class="ProgressIndicator is-visible">
+            <div class="si-circle1 si-circle"></div>
+            <div class="si-circle2 si-circle"></div>
+            <div class="si-circle3 si-circle"></div>
+            <div class="si-circle4 si-circle"></div>
+            <div class="si-circle5 si-circle"></div>
+            <div class="si-circle6 si-circle"></div>
+            <div class="si-circle7 si-circle"></div>
+            <div class="si-circle8 si-circle"></div>
+            <div class="si-circle9 si-circle"></div>
+            <div class="si-circle10 si-circle"></div>
+            <div class="si-circle11 si-circle"></div>
+            <div class="si-circle12 si-circle"></div>
+        </div>
+        <div id="FullscreenIndicator" class="FullscreenIndicator">
+            <div class="SlideUpWrapper">
+                <div class="SlideUpIndicator">
+                    <span class="icon-fullscreen"></span>
+                </div>
+            </div>
+        </div>
+        <div id="DialogWindow" class="DialogWindow">
+            <div class="Overlay"></div>
+        </div>
+        <div id="NotificationHolder">
+        </div>
+        <div id="GameInfoWindow" class="GameInfoWindow">
+            <div class="Overlay"></div>
+            <div class="GameInfo">
+                <div id="GameInfoClose" class="GameInfo__close" data-translation="close"></div>
+                <div class="GameInfo__title"><span data-translation="game_info"></span> - <span
+                        id="GameInfoGameName">Plinko</span></div>
+                <div id="GameInfoBody" class="GameInfo__body scroll-area">
+
+                </div>
+            </div>
+        </div>
+        <div id="FeaturePromotionWindow">
+            <div class="Overlay"></div>
+            <div class="FeaturePromotion">
+                <div id="FeaturePromotionClose" class="FeaturePromotion__close" data-translation="close"></div>
+                <div class="FeaturePromotion__title"></div>
+                <div id="FeaturePromotionNavBar" class="FeaturePromotionNavBar">
+                    <ul id="FeaturePromotionNavList" class="FeaturePromotionNavBar__navlist">
+                    </ul>
+                </div>
+                <div id="FeaturePromotionContent" class="FeaturePromotion__content">
+                </div>
+            </div>
+        </div>
+        <div id="BetHistoryWindow" class="BetHistoryWindow">
+            <div class="Overlay"></div>
+            <div class="BetHistory">
+                <div id="BetHistoryClose" class="BetHistory__close" data-translation="close"></div>
+                <div class="BetHistory__title" data-translation="bet_history"></div>
+                <p id="BetHistoryDateRangeExplainer" class="BetHistory__subtitle--explainer"
+                    data-translation="bet_history_date_range"></p>
+                <div id="BetHistoryNavBar" class="BetHistoryNavBar">
+                    <ul class="BetHistoryNavBar__navlist">
+                        <li class="BetHistoryNavBar__navitem">
+                            <button id="AllBetsHistoryTab" class="BetHistoryNavBar__button">
+                                <span class="BetHistoryNavBar__title" data-translation="history_bet_uc"></span>
+                            </button>
+                        </li>
+                        <li class="BetHistoryNavBar__navitem">
+                            <button id="AllWinsHistoryTab" class="BetHistoryNavBar__button">
+                                <span class="BetHistoryNavBar__title" data-translation="history_biggest_wins_uc"></span>
+                                <span class="BetHistoryNavBar__subtitle" data-translation="history_all_games_uc"></span>
+                            </button>
+                        </li>
+                        <li class="BetHistoryNavBar__navitem">
+                            <button id="CurrentGameWinsHistoryTab" class="BetHistoryNavBar__button">
+                                <span class="BetHistoryNavBar__title" data-translation="history_biggest_wins_uc"></span>
+                                <span class="BetHistoryNavBar__subtitle"
+                                    data-translation="history_current_game_uc"></span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="BetHistory__table-container">
+                    <table id="BetHistoryTable" class="BetHistory__table">
+                        <thead>
+                            <tr>
+                                <th data-translation="date"></th>
+                                <th data-translation="bet_past"></th>
+                                <th data-translation="win_uc"></th>
+                                <th data-translation="general_id"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="BetHistoryTableBody" class="BetHistory__table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="FeatureBuyWindow" class="FeatureBuyWindow">
+            <div class="Overlay"></div>
+            <div class="FeatureBuy">
+                <div id="FeatureBuyClose" class="FeatureBuy__close" data-translation="close"></div>
+                <div class="FeatureBuy__title"><span data-translation="feature_buy_uc"></span></div>
+                <div id="FeatureBuyBody" class="FeatureBuy__body is-visible">
+                    <div id="FeatureBuyAmountHolder" class="FeatureBuyAmountHolder">
+                        <div class="FeatureBuyAmountValueContainer">
+                            <span id="FeatureBuyAmountLabel" class="FeatureBuyAmount__label"
+                                data-translation="bet_past"></span>
+                            <span id="FeatureBuyAmountValue" class="FeatureBuyAmount__value">0</span>
+                        </div>
+                        <div class="FeatureBuyAmountChangers">
+                            <button id="FeatureBuyAmountIncrease" class="FeatureBuyAmountChanger"><span
+                                    class="icon-plus"></span></button>
+                            <button id="FeatureBuyAmountDecrease" class="FeatureBuyAmountChanger"><span
+                                    class="icon-minus"></span></button>
+                        </div>
+                    </div>
+                </div>
+                <div id="FeatureBuyConfirmBody" class="FeatureBuy__body">
+                    <div class="FeatureBuyConfirmBox">
+                        <img id="FeatureBuyConfirmImage" src="">
+                        <div id="FeatureBuyConfirmAmount" class="FeatureBuyConfirmAmount">
+                            <span id="FeatureBuyConfirmValue" class="FeatureBuyConfirmAmount__value">0</span>
+                            <span id="FeatureBuyConfirmLabel" class="FeatureBuyConfirmAmount__label"
+                                data-translation="feature_buy_confirm"></span>
+                        </div>
+                        <div class="FeatureBuyConfirmBox__cta">
+                            <button id="FeatureBuyConfirmBackButton"
+                                class="FeatureBuyConfirmBox__button Button Button--secondary"
+                                data-translation="back_uc"></button>
+                            <button id="FeatureBuyConfirmButton"
+                                class="FeatureBuyConfirmBox__button Button Button--primary" data-feature-buy-confirm=""
+                                data-translation="ok_uc"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="CoreOverlay" id="CoreOverlay">
+            <div class="CoreOverlay--game-branding">
+                <div id="InGameBrandingHolder" class="InGameBrandingHolder">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="281" height="377.031" viewBox="0 0 281 377.031">
+                        <defs>
+                            <style>
+                                .HIcon {
+                                    fill: #fff;
+                                    fill-rule: evenodd;
+                                }
+                            </style>
+                        </defs>
+                        <path id="HACKSAW_LOGO" data-name="HACKSAW LOGO" class="cls-1"
+                            d="M39,407.009h99.178V308.2L39,304.5V407.009Zm181.823-105.9,99.184,3.693V29.975H220.827v130.2H173.5V29.975H74.317V295.653l99.178,3.693V250.068h47.332v51.04Zm-35.313,105.9H284.7V313.652l-99.184-3.693v97.05Z"
+                            transform="translate(-39 -29.969)" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="CoreOverlay--session">
+                <div id="SessionBar" class="SessionBar" data-ui-margin-element="topLandscape">
+                    <div class="SessionBarContentWrapper" data-ui-margin-element="topPortrait">
+                        <div id="SessionTimer" class="SessionTimer">
+                            <span class="SessionTimerLabel"><span data-translation="session"></span>:</span>
+                            <span id="SessionTimerValue">00:00:00</span>
+                        </div>
+                        <div id="NetPosition" class="NetPosition">
+                            <span class="NetPositionLabel divider-vertical inline-padding"><span
+                                    data-translation="net">Net Position</span>:</span>
+                            <span id="NetPositionValue">0</span>
+                        </div>
+                        <div id="ColjuegosItems" class="ColjuegosItems">
+                            <a href="https://www.coljuegos.gov.co/" target="_top" class="ColjuegosItem">
+                                <div class="ColjuegosItem__icon"><img src="images/coljuegos.png"></div>
+                            </a>
+                            <a href="http://juegabien.co/" target="_top" class="ColjuegosItem">
+                                <div class="ColjuegosItem__icon"><img src="images/juegabien.png"></div>
+                            </a>
+                            <a href="http://juegabien.co/" class="ColjuegosItem ColjuegosText" target="_top">
+                                <div>JUEGA RESPONSABLE</div>
+                            </a>
+                        </div>
+                        <div id="SpelpausItems" class="SpelpausItems">
+                            <a href="" target="_top" id="SpelpausActionPause" class="SpelpausItem">
+                                <div class="SpelpausItem__icon"><svg height="16" viewBox="0 0 17 16" width="17"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g fill="none" fill-rule="evenodd" transform="translate(-.5)">
+                                            <path
+                                                d="m16.7407407 7.92592593c0 4.33333337-3.5185185 7.85185187-7.88888885 7.85185187-4.33333333 0-7.88888889-3.5185185-7.88888889-7.88888891.03703704-4.33333333 3.55555556-7.85185185 7.88888889-7.85185185 4.37037035 0 7.88888885 3.51851852 7.88888885 7.88888889z"
+                                                fill="#e20d18" />
+                                            <g fill="#fff">
+                                                <path
+                                                    d="m7.62962963 11.8888889h-2.2962963c-.18518518 0-.33333333-.1481482-.33333333-.3333333v-7.29629634c0-.18518519.14814815-.33333333.33333333-.33333333h2.2962963c.18518518 0 .33333333.14814814.33333333.33333333v7.29629634c0 .1851851-.14814815.3333333-.33333333.3333333z" />
+                                                <path
+                                                    d="m12.3703704 11.9259259h-2.2962963c-.18518521 0-.33333336-.1481481-.33333336-.3333333v-7.33333334c0-.18518519.14814815-.33333333.33333336-.33333333h2.2962963c.1851852 0 .3333333.14814814.3333333.33333333v7.29629634c0 .2222222-.1481481.3703703-.3333333.3703703z" />
+                                            </g>
+                                        </g>
+                                    </svg></div>
+                                <div class="SpelpausItem__label">Spelpaus</div>
+                            </a>
+                            <a href="" target="_top" id="SpelpausActionTest" class="SpelpausItem">
+                                <div class="SpelpausItem__icon"><svg height="16" viewBox="0 0 16 16" width="16"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <linearGradient id="a" x1="111.217434%" x2="-11.196711%" y1="50.151765%"
+                                            y2="50.151765%">
+                                            <stop offset="0" stop-color="#e41913" />
+                                            <stop offset=".0974402" stop-color="#ea6516" />
+                                            <stop offset=".2148" stop-color="#f3a518" />
+                                            <stop offset=".3121" stop-color="#f9cd1a" />
+                                            <stop offset=".384" stop-color="#fde31a" />
+                                            <stop offset=".4228" stop-color="#feeb1a" />
+                                            <stop offset=".6231" stop-color="#dfde20" />
+                                            <stop offset="1" stop-color="#009245" />
+                                        </linearGradient>
+                                        <g fill="none" fill-rule="evenodd" transform="translate(-1 -1)">
+                                            <g transform="translate(.703704 .851852)">
+                                                <path
+                                                    d="m8.11111111 15.8518519c-2.03703704-.0370371-3.96296296-.8518519-5.40740741-2.2962963-1.44444444-1.4814815-2.22222222-3.4074075-2.18518518-5.48148153.03703704-4.18518518 3.48148148-7.62962963 7.7037037-7.62962963h.07407408c2.037037.03703704 3.962963.85185186 5.4074074 2.2962963 1.4444444 1.48148148 2.2222222 3.40740741 2.1851852 5.48148148-.037037 4.18518518-3.4814815 7.62962968-7.70370371 7.62962968z"
+                                                    fill="#fff" />
+                                                <path
+                                                    d="m8.18518519.25925926v.37037037h.07407407c2.00000004.03703704 3.88888884.81481481 5.29629634 2.25925926 1.4074074 1.44444444 2.1481481 3.33333333 2.1481481 5.33333333-.037037 4.11111108-3.4074074 7.44444448-7.51851851 7.44444448h-.07407408c-2-.0370371-3.88888889-.8148148-5.2962963-2.2592593-1.4074074-1.4444444-2.14814814-3.3333333-2.14814814-5.33333333.03703703-4.11111111 3.4074074-7.44444444 7.51851852-7.44444444zm0 0c-4.2962963 0-7.81481482 3.48148148-7.88888889 7.77777778-.03703704 4.33333336 3.44444444 7.92592596 7.77777777 7.96296296h.07407408c4.29629625 0 7.81481485-3.4814815 7.88888885-7.77777778.0370371-4.33333333-3.4444444-7.92592592-7.77777774-7.96296296 0 0-.03703704 0-.07407407 0z"
+                                                    fill="#020203" fill-rule="nonzero" />
+                                            </g>
+                                            <path
+                                                d="m15.7272788 8.74153651c.0813805.68803489-.4104101 1.31176929-1.0984449 1.39314969-.6880349.0813805-1.3117693-.41041005-1.3931498-1.09844494-.6463236-5.46437228-8.01249709-5.51698781-8.77056353.02272846-.09393305.6864338-.72654537 1.16675058-1.41297917 1.07281748-.68643381-.093933-1.16675057-.72654534-1.07281752-1.41297914 1.15686494-8.45401306 12.75512842-8.37116832 13.74795492.02272845z"
+                                                fill="url(#a)" fill-rule="nonzero" />
+                                            <path
+                                                d="m7.25925926 9.11111111 3.25925924-5.85185185-.66666665 6.66666667c-.22222222.70370367-1 1.11111107-1.7037037.88888887-.70370371-.2222222-1.11111111-.99999999-.88888889-1.70370369z"
+                                                fill="#1e1e1c" />
+                                        </g>
+                                    </svg></div>
+                                <div class="SpelpausItem__label">Självtest</div>
+                            </a>
+                            <a href="" target="_top" id="SpelpausActionLimits" class="SpelpausItem">
+                                <div class="SpelpausItem__icon" style="padding-top: 1px;"><svg height="17"
+                                        viewBox="0 0 19 17" width="19" xmlns="http://www.w3.org/2000/svg">
+                                        <g fill="none" fill-rule="evenodd" transform="translate(0 -1)">
+                                            <g transform="translate(.074074 .851852)">
+                                                <path
+                                                    d="m7.96296296 15.6666667c-4.14814815 0-7.51851852-3.3703704-7.51851852-7.51851855s3.37037037-7.51851852 7.51851852-7.51851852c4.14814814 0 7.51851854 3.37037037 7.51851854 7.51851852s-3.3703704 7.51851855-7.51851854 7.51851855z"
+                                                    fill="#fff" />
+                                                <path
+                                                    d="m7.96296296 1c3.96296294 0 7.14814814 3.22222222 7.14814814 7.14814815 0 3.96296295-3.2222222 7.14814815-7.14814814 7.14814815-3.96296296 0-7.14814814-3.2222222-7.14814814-7.14814815 0-3.96296296 3.18518518-7.14814815 7.14814814-7.14814815zm0-.74074074c-4.33333333 0-7.88888889 3.51851852-7.88888889 7.88888889 0 4.33333335 3.51851852 7.88888885 7.88888889 7.88888885 4.33333334 0 7.88888894-3.5185185 7.88888894-7.88888885-.0370371-4.37037037-3.5555556-7.88888889-7.88888894-7.88888889z"
+                                                    fill="#009739" fill-rule="nonzero" />
+                                            </g>
+                                            <g fill="#009739">
+                                                <path
+                                                    d="m5.28268056 4.67890319c-.21130796-.33479961-.11119818-.77750727.22360143-.98881522.33479962-.21130796.77750727-.11119819.98881523.22360143l2.85185185 4.51851852c.21130796.33479961.11119818.77750727-.22360143.98881523-.33479962.21130795-.77750728.11119818-.98881523-.22360144z"
+                                                    fill-rule="nonzero" />
+                                                <path
+                                                    d="m5.77973901 11.9218007c-.32500158.2260881-.771748.1459028-.99783605-.1790987-.22608806-.3250016-.1459028-.771748.17909877-.9978361l3.40740741-2.37037035c.32500158-.22608806.771748-.1459028.99783605.17909878.22608806.32500158.1459028.77174799-.17909878.99783605z"
+                                                    fill-rule="nonzero" />
+                                                <circle cx="14" cy="12.407407" r="4.777778" />
+                                            </g>
+                                            <g fill="#fff" transform="translate(11.185185 9.740741)">
+                                                <path
+                                                    d="m.11111111.2962963h1v2l1.55555556-2h1.25925926l-1.77777778 2.25925926 1.85185185 2.48148148h-1.22222222l-1.66666667-2.22222223v2.22222223h-1z" />
+                                                <path
+                                                    d="m5.22222222 1.92592593v.44444444c.07407408-.14814815.18518519-.25925926.33333334-.37037037.11111111-.07407407.22222222-.14814815.33333333-.14814815h.18518518v1c-.07407407 0-.14814814-.03703704-.22222222-.03703704-.18518518 0-.33333333.07407408-.44444444.18518519-.11111111.14814815-.14814815.33333333-.14814815.55555556v1.37037037h-.92592593v-3.07407408h.88888889z" />
+                                            </g>
+                                            <path
+                                                d="m1.92592593 9.64157407c-.19795318 0-.35842593-.22385762-.35842593-.5 0-.27614237.16047275-.5.35842593-.5h.88888888c.19795318 0 .35842593.22385763.35842593.5 0 .27614238-.16047275.5-.35842593.5z"
+                                                fill="#009739" fill-rule="nonzero" />
+                                            <path
+                                                d="m8.75268519 3.7037037c0 .19795318-.22385763.35842593-.5.35842593-.27614238 0-.5-.16047275-.5-.35842593v-.88888889c0-.19795317.22385762-.35842592.5-.35842592.27614237 0 .5.16047275.5.35842592z"
+                                                fill="#009739" fill-rule="nonzero" />
+                                            <path
+                                                d="m8.67861111 15.3703704c0 .1979531-.22385762.3584259-.5.3584259-.27614237 0-.5-.1604728-.5-.3584259v-.8888889c0-.1979532.22385763-.3584259.5-.3584259.27614238 0 .5.1604727.5.3584259z"
+                                                fill="#009739" fill-rule="nonzero" />
+                                        </g>
+                                    </svg></div>
+                                <div class="SpelpausItem__label">Spelgränser</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="CoreOverlay--meta-data">
+                <div class="CoreOverlay__container GameInfoWidget">
+                    <span id="Clock" class="Clock inline-padding"></span>
+                    <span id="GameNameOverlay" class="GameNameOverlay divider-vertical inline-padding">Plinko</span>
+                    <span id="RtpOverlay" class="RtpOverlay divider-vertical inline-padding">
+                        <span class="RtpLabel"><span data-translation="rtp_label"></span>:</span>
+                        <span id="RtpOverlayValue" class="inline-padding">0</span>
+                    </span>
+                </div>
+                <div class="CoreOverlay__container MaxWinWidget" id="MaxWinOverlayContainer">
+                    <span id="MaxWinOverlay">
+                        <span class="MaxWinLabel inline-padding" class="inline-padding"><span
+                                data-translation="maxwin_header_uc"></span><span>:&nbsp;</span></span>
+                        <span id="MaxWinMultiplierOverlayValue"></span>
+                    </span>
+                    <span class="inline-padding" id="MaxWinOddsOverlay">
+                        <span class="MaxWinOddsLabel divider-vertical inline-padding"><span
+                                data-translation="odds_uc"></span><span>:&nbsp;</span></span>
+                        <span id="MaxWinOddsOverlayValue"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="UiUserPanelWrapper" id="UiWrapper" data-ui-margin-element="true">
+    <div class="UiAsideUserPanel">
+        <div class="UiAsideUserPanel__inner">
+
+            <!-- MENU SETTINGS -->
+            <div class="Pane pane--flex pane-rounded-corners">
+                <div class="Pane__inner">
+                    <div class="Pane__body styled-scrollbar" id="MainPanel">
+                        <div class="MenuSection__container" id="MainPanelMenuSections">
+
+                            <!-- BET AMOUNT -->
+                            <section class="Fieldset MenuSection__BetAmount">
+                                <div class="Fieldset__input-group">
+                                    <div class="Fieldset__legend">
+                                        <p class="Title" data-translation="bet_amount">Bet amount</p>
+                                    </div>
+                                    <div class="Fieldset__items-group">
+                                        <div class="BetAmountPanel">
+                                            <div class="BetAmountProgressbar">
+                                                <span id="BetAmountIndicatorProgress"
+                                                    class="BetAmountProgressbar__inner"></span>
+                                            </div>
+                                            <div class="BetAmountPanel__container">
+                                                <button type="button" class="Button Button--decrease-bet"
+                                                    id="BetAmountDecrease"><i class="icon-caret-down"></i></button>
+                                                <div class="BetAmountPanel__wrapper">
+                                                    <span class="Input--bet-amount" data-value=""
+                                                        id="BetAmountValue"></span>
+                                                </div>
+                                                <button type="button" class="Button Button--increase-bet"
+                                                    id="BetAmountIncrease"><i class="icon-caret-up"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- BET AMOUNT -->
+                            <section class="Fieldset MenuSection__TotalBetAmount is-hidden" id="TotalBetAmountSection">
+                                <div class="Fieldset__input-group">
+                                    <div class="Fieldset__legend">
+                                        <p class="Title" data-translation="total_bet_amount">Total bet amount</p>
+                                    </div>
+                                    <div class="Fieldset__items-group">
+                                        <div class="BetAmountPanel">
+                                            <div class="BetAmountPanel__container">
+                                                <div class="BetAmountPanel__wrapper">
+                                                    <span class="Input--bet-amount" data-value=""
+                                                        id="TotalBetAmountValue"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- ACTION PANEL -->
+                            <section class="Fieldset MenuSection__ActionPanel" id="ActionPanel">
+                                <div class="Fieldset__input-group">
+                                    <div class="UiAsideUserPanel__button-container">
+                                        <!-- STOP AUTOPLAY BUTTON -->
+                                        <button class="Button Button--primary Button--stopautoplay"
+                                            id="StopAutoplayBtn">
+                                            <span class="Title" data-translation="stop_autoplay_uc"></span>
+                                            <span class="Title autoplay-counter-value" id="AutoplayCounter"></span>
+                                        </button>
+                                        <!-- START AUTOPLAY BUTTON -->
+                                        <button class="Button Button--primary Button--startautoplay" type="button"
+                                            id="StartAutoplayBtn">
+                                            <span class="Title" data-translation="start_autoplay_uc"></span>
+                                        </button>
+                                        <!-- BET BUTTON -->
+                                        <button class="Button Button--primary Button--place-bet" type="button"
+                                            id="PlaceBetBtn">
+                                            <span class="Title" data-translation="bet_uc">Bet</span>
+                                        </button>
+                                        <!-- COLLECT BUTTON -->
+                                        <button class="Button Button--primary Button--collect" type="button"
+                                            id="CollectBtn">
+                                            <span id="WinAmountLabel" class="Title"
+                                                data-translation="collect_uc"></span>
+                                            <span id="CollectableAmountValue" class="Title collect-value"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BALANCE -->
+            <div class="Pane pane-rounded-corners">
+                <div class="Pane__inner">
+                    <div class="Pane__body">
+                        <div class="BalancePanel">
+                            <div class="BalanceInfoWidget">
+                                <div id="FreeRoundsCounterItem" class="FreeRoundsCounter">
+                                    <span class="BalancePanel__label" data-translation="free_rounds_uc"></span>
+                                    <span id="FreeRoundsCounterValue" class="BalancePanel__value">0</span>
+                                </div>
+                                <div id="FreeRoundsWinItem" class="FreeRoundsWin">
+                                    <span class="BalancePanel__label" data-translation="total_win_uc"></span>
+                                    <span id="FreeRoundsWinValue" class="BalancePanel__value"></span>
+                                </div>
+                                <div id="BalanceItem" class="Balance">
+                                    <span id="BalanceLabel" class="BalancePanel__label"
+                                        data-translation="balance"></span>
+                                    <span id="BalanceValue" class="BalancePanel__value pulse-animate"></span>
+                                </div>
+                            </div>
+                            <div class="BalanceTicker UiAsideUserPanel__container-row">
+                                <ul id="BalanceTickerList" class="BalanceTicker__list"></ul>
+                            </div>
+                            <div id="WinAmountItem" class="WinAmount DataPanelItem">
+                                <span id="WinAmountLabel" class="DataPanelItem__label WinAmount__text"
+                                    data-translation="win_uc"></span>
+                                <span id="WinAmountValue" class="WinAmount__value" data-main-field="win-amount">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- MAIN NAVBAR -->
+            <div class="Pane pane--sm pane-rounded-corners">
+                <div class="Pane__inner">
+                    <div class="MainNavbar" id="MainNavbar">
+                        <ul class="MainNavbar__list">
+                            <li class="MainNavbar__item" id="SoundToggle">
+                                <span class="MainNavbar__icon icon-sound-on"></span>
+                                <span class="MainNavbar__text" data-translation="sound">SOUND</span>
+                            </li>
+                            <li class="MainNavbar__item" id="MusicToggle">
+                                <span class="MainNavbar__icon icon-music-on"></span>
+                                <span class="MainNavbar__text" data-translation="music">MUSIC</span>
+                            </li>
+                            <li class="MainNavbar__item turbo-off" id="TurboToggle">
+                                <span class="MainNavbar__icon icon-turbo-off"></span>
+                                <span class="MainNavbar__text" data-translation="turbo">TURBO</span>
+                            </li>
+                            <li class="MainNavbar__item super-turbo-off" id="SuperTurboToggle">
+                                <span class="MainNavbar__icon icon-turbo-off"></span>
+                                <span class="MainNavbar__text" data-translation="super_turbo_uc">SUPER TURBO</span>
+                            </li>
+                            <li class="MainNavbar__item" id="GameInfoBtn">
+                                <span class="MainNavbar__icon icon-info-a"></span>
+                                <span class="MainNavbar__text" data-translation="info_uc">INFO</span>
+                            </li>
+                            <li class="MainNavbar__item MainNavbar__item--BetHistory" id="BetHistoryBtn">
+                                <span class="MainNavbar__icon icon-history"></span>
+                                <span class="MainNavbar__text" data-translation="history">HISTORY</span>
+                            </li>
+                            <li class="MainNavbar__item MainNavbar__item--Lobby" id="LobbyAnchor">
+                                <span class="MainNavbar__icon icon-home"></span>
+                                <span class="MainNavbar__text" data-translation="home">HOME</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+        <div id="InternalReplayOverlay" class="InternalReplayOverlay">
+            <div class="InternalReplayWatermark"></div>
+        </div>
+    </div>
+
+    <div id="ReplayFrameHolder" class="ReplayFrameHolder">
+        <div id="ReplayClose" class="ReplayFrameHolder__close" data-translation="close"></div>
+    </div>
+
+
+
+    <script type="text/javascript" src="casino/hacksaw-casino.min.js"></script>
+    <script type="text/javascript" src="ui/hacksaw-ui.min.js"></script>
+    <script type="text/javascript" src="../../integrations/integration.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+
+    <script type="text/javascript" src="vendor/outcome-control-manager.min.js"></script>
+    <script type="text/javascript" src="vendor/nosleep.min.js"></script>
+    <script type="text/javascript" src="vendor/analytics.min.js"></script>
+    <script type="text/javascript" src="vendor/reporter.min.js"></script>
+<script>(function(){if (!document.body) return;var js = "window['__CF$cv$params']={r:'88404cf1a95282e7',t:'MTcxNTc0NjQ2MC41NzMwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vedd3670a3b1c4e178fdfb0cc912d969e1713874337387" integrity="sha512-EzCudv2gYygrCcVhu65FkAxclf3mYM6BCwiGUm6BEuLzSb5ulVhgokzCZED7yMIkzYVg65mxfIBNdNra5ZFNyQ==" data-cf-beacon='{"rayId":"88404cf1a95282e7","version":"2024.4.1","token":"d865eee81e824a7e8a4e93adea2d9843"}' crossorigin="anonymous"></script>
+</body>
+
+</html>
