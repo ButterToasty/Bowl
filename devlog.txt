@@ -4,7 +4,11 @@ New Games:
 - Super Mario Flash 2 
 - A Koopas Revenge 1 
 - A Koopas Revenge 2
-- 4th and goal 2024
+- Duck Life 5
+- Duck Life 4
+- Mutilate a Doll 2
+- The Right M9x
+- FOUR Fireboy and Watergirl Games
 - Fireboy & Watergirl
 - Mario NES
 - learn 2 fly 2
@@ -14,6 +18,7 @@ New Games:
 - MK4
 
 Games Coming Soon:
+- 4th and goal 2024
 - The Deepest Sword (Fix)
 - Plinko
 - Slots
@@ -23,6 +28,7 @@ Games Coming Soon:
 - Getaway Shootout
 - Melon Playground
 - Wrastling
+- Slowroads.io
 
 Other Stuff:
 - I had to cut some games from THIS update since they're web-based or would take too long (I have things planned)
