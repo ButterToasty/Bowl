@@ -795,6 +795,7 @@ var s_wvb=s_be&&10>document.documentMode?null:RegExp("\\s*([^\\s'\",]+[^'\",]*((
 e.selectorText;d.push(s_Yka(f,s_zvb(e.style,c)))}});return s_nvb(d)},s_yvb=function(a){return a.filter(function(b){return b instanceof CSSStyleRule||b.type==CSSRule.STYLE_RULE})},s_Cvb=function(a,b,c){a=s_Bvb("<style>"+a+"</style>");return null==a||null==a.sheet?s_Zka:s_Avb(a.sheet,void 0!=b?b:null,c)},s_Bvb=function(a){if(s_be&&!s_je(10)||"function"!=typeof s_ba.DOMParser)return null;a=s_A("<html><head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TH10NX61NN"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4407596680292212" crossorigin="anonymous"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
