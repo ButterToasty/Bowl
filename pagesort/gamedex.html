@@ -20,19 +20,35 @@
 </head>
 <body>
     <style>
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("newBT.png");
+    background-size: 10%;
+    animation: panBackground 20s linear infinite;
+  }
+
+  @keyframes panBackground {
+    0% {
+      background-position: 0% 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
+
     /* Style the search box */
 #mySearch {
   width: 100%;
-  font-size: 18px;
-  background-color: rgb(92, 64, 39);
+  background-color: rgb(172, 122, 78);
   font-family: Comic Sans MS;
-  border: 1px solid #ddd;
+  color: black;
 }
 
 /* Style the navigation menu */
 #myMenu {
   list-style-type: none;
-  background-color: rgb(244, 234, 149);
+  background-color: background-color: rgba(245, 215, 179, 0.912);
   font-family: Comic Sans MS;
   padding: 0;
   margin: 0;
