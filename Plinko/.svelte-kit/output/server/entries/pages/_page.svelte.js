@@ -2,7 +2,6 @@ import { d as set_current_component, r as run_all, f as current_component, o as 
 import { c as convertScale, b as balance, w as winRecords, f as formatCurrency, t as totalProfitHistory, i as isAnimationOn, p as plinkoEngine, a as betAmount, d as betAmountOfExistingBalls, r as riskLevel, e as rowCount, B as BetMode, R as RiskLevel, g as rowCountOptions, P as Plinko } from "../../chunks/Plinko.js";
 import { d as derived, w as writable, r as readable, a as readonly } from "../../chunks/index.js";
 import { o as onMount } from "../../chunks/ssr2.js";
-import { nanoid } from "nanoid/non-secure";
 import { twMerge } from "tailwind-merge";
 import "chart.js/auto";
 const globals = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : (
@@ -413,6 +412,15 @@ const overridable = (_store, onChange) => {
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+let urlAlphabet = "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict";
+let nanoid = (size2 = 21) => {
+  let id = "";
+  let i = size2;
+  while (i--) {
+    id += urlAlphabet[Math.random() * 64 | 0];
+  }
+  return id;
+};
 function generateId() {
   return nanoid(10);
 }
