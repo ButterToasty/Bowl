@@ -1,0 +1,139 @@
+{
+  ".svelte-kit/generated/server/internal.js": {
+    "file": "internal.js",
+    "name": "internal",
+    "src": ".svelte-kit/generated/server/internal.js",
+    "isEntry": true,
+    "imports": [
+      "_internal.js"
+    ]
+  },
+  "_Plinko.js": {
+    "file": "chunks/Plinko.js",
+    "name": "Plinko",
+    "imports": [
+      "_ssr.js",
+      "_index.js"
+    ]
+  },
+  "_exports.js": {
+    "file": "chunks/exports.js",
+    "name": "exports"
+  },
+  "_index.js": {
+    "file": "chunks/index.js",
+    "name": "index",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "_internal.js": {
+    "file": "chunks/internal.js",
+    "name": "internal",
+    "imports": [
+      "_ssr.js",
+      "_ssr2.js"
+    ]
+  },
+  "_ssr.js": {
+    "file": "chunks/ssr.js",
+    "name": "ssr"
+  },
+  "_ssr2.js": {
+    "file": "chunks/ssr2.js",
+    "name": "ssr"
+  },
+  "node_modules/.pnpm/@sveltejs+kit@2.5.6_@sveltejs+vite-plugin-svelte@3.1.0_svelte@4.2.15_vite@5.2.9/node_modules/@sveltejs/kit/src/runtime/components/error.svelte": {
+    "file": "entries/fallbacks/error.svelte.js",
+    "name": "entries/fallbacks/error.svelte",
+    "src": "node_modules/.pnpm/@sveltejs+kit@2.5.6_@sveltejs+vite-plugin-svelte@3.1.0_svelte@4.2.15_vite@5.2.9/node_modules/@sveltejs/kit/src/runtime/components/error.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_exports.js"
+    ]
+  },
+  "node_modules/.pnpm/@sveltejs+kit@2.5.6_@sveltejs+vite-plugin-svelte@3.1.0_svelte@4.2.15_vite@5.2.9/node_modules/@sveltejs/kit/src/runtime/components/layout.svelte": {
+    "file": "entries/fallbacks/layout.svelte.js",
+    "name": "entries/fallbacks/layout.svelte",
+    "src": "node_modules/.pnpm/@sveltejs+kit@2.5.6_@sveltejs+vite-plugin-svelte@3.1.0_svelte@4.2.15_vite@5.2.9/node_modules/@sveltejs/kit/src/runtime/components/layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "node_modules/.pnpm/@sveltejs+kit@2.5.6_@sveltejs+vite-plugin-svelte@3.1.0_svelte@4.2.15_vite@5.2.9/node_modules/@sveltejs/kit/src/runtime/server/index.js": {
+    "file": "index.js",
+    "name": "index",
+    "src": "node_modules/.pnpm/@sveltejs+kit@2.5.6_@sveltejs+vite-plugin-svelte@3.1.0_svelte@4.2.15_vite@5.2.9/node_modules/@sveltejs/kit/src/runtime/server/index.js",
+    "isEntry": true,
+    "imports": [
+      "_internal.js",
+      "_exports.js",
+      "_index.js"
+    ]
+  },
+  "src/lib/assets/logo.svg": {
+    "file": "_app/immutable/assets/logo.Bq7oLjZC.svg",
+    "src": "src/lib/assets/logo.svg"
+  },
+  "src/lib/assets/og_image.jpg": {
+    "file": "_app/immutable/assets/og_image.PzHn9Bxz.jpg",
+    "src": "src/lib/assets/og_image.jpg"
+  },
+  "src/routes/+layout.svelte": {
+    "file": "entries/pages/_layout.svelte.js",
+    "name": "entries/pages/_layout.svelte",
+    "src": "src/routes/+layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_layout.DP9pSTJN.css"
+    ],
+    "assets": [
+      "_app/immutable/assets/og_image.PzHn9Bxz.jpg"
+    ]
+  },
+  "src/routes/+layout.ts": {
+    "file": "entries/pages/_layout.ts.js",
+    "name": "entries/pages/_layout.ts",
+    "src": "src/routes/+layout.ts",
+    "isEntry": true
+  },
+  "src/routes/+page.svelte": {
+    "file": "entries/pages/_page.svelte.js",
+    "name": "entries/pages/_page.svelte",
+    "src": "src/routes/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_Plinko.js",
+      "_index.js",
+      "_ssr2.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.BgajEuTG.css"
+    ],
+    "assets": [
+      "_app/immutable/assets/logo.Bq7oLjZC.svg"
+    ]
+  },
+  "src/routes/benchmark/+layout.ts": {
+    "file": "entries/pages/benchmark/_layout.ts.js",
+    "name": "entries/pages/benchmark/_layout.ts",
+    "src": "src/routes/benchmark/+layout.ts",
+    "isEntry": true
+  },
+  "src/routes/benchmark/+page.svelte": {
+    "file": "entries/pages/benchmark/_page.svelte.js",
+    "name": "entries/pages/benchmark/_page.svelte",
+    "src": "src/routes/benchmark/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js",
+      "_Plinko.js"
+    ]
+  }
+}

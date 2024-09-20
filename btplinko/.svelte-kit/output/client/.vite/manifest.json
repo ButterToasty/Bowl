@@ -1,0 +1,142 @@
+{
+  ".svelte-kit/generated/client-optimized/app.js": {
+    "file": "_app/immutable/entry/app.D4f4lxBI.js",
+    "name": "entry/app",
+    "src": ".svelte-kit/generated/client-optimized/app.js",
+    "isEntry": true,
+    "imports": [
+      "_scheduler.CN4FEajw.js",
+      "_index.DJqeu6aJ.js"
+    ],
+    "dynamicImports": [
+      ".svelte-kit/generated/client-optimized/nodes/0.js",
+      ".svelte-kit/generated/client-optimized/nodes/1.js",
+      ".svelte-kit/generated/client-optimized/nodes/2.js",
+      ".svelte-kit/generated/client-optimized/nodes/3.js",
+      ".svelte-kit/generated/client-optimized/nodes/4.js"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/0.js": {
+    "file": "_app/immutable/nodes/0.BDkAnLVs.js",
+    "name": "nodes/0",
+    "src": ".svelte-kit/generated/client-optimized/nodes/0.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_scheduler.CN4FEajw.js",
+      "_index.DJqeu6aJ.js"
+    ],
+    "css": [
+      "_app/immutable/assets/0.p0V9hYsm.css"
+    ],
+    "assets": [
+      "_app/immutable/assets/og_image.PzHn9Bxz.jpg"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/1.js": {
+    "file": "_app/immutable/nodes/1.DqLhav7J.js",
+    "name": "nodes/1",
+    "src": ".svelte-kit/generated/client-optimized/nodes/1.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_scheduler.CN4FEajw.js",
+      "_index.DJqeu6aJ.js",
+      "_entry.Bs65xEWi.js"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/2.js": {
+    "file": "_app/immutable/nodes/2.B6ZOCjx_.js",
+    "name": "nodes/2",
+    "src": ".svelte-kit/generated/client-optimized/nodes/2.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_scheduler.CN4FEajw.js",
+      "_index.DJqeu6aJ.js"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/3.js": {
+    "file": "_app/immutable/nodes/3.CNyB5cEl.js",
+    "name": "nodes/3",
+    "src": ".svelte-kit/generated/client-optimized/nodes/3.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_scheduler.CN4FEajw.js",
+      "_index.DJqeu6aJ.js",
+      "_Plinko.2O65R_gK.js",
+      "_index.8qYHx-Kq.js"
+    ],
+    "css": [
+      "_app/immutable/assets/3.BgajEuTG.css"
+    ],
+    "assets": [
+      "_app/immutable/assets/logo.Bq7oLjZC.svg"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/4.js": {
+    "file": "_app/immutable/nodes/4.IkVhrabi.js",
+    "name": "nodes/4",
+    "src": ".svelte-kit/generated/client-optimized/nodes/4.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_scheduler.CN4FEajw.js",
+      "_index.DJqeu6aJ.js",
+      "_Plinko.2O65R_gK.js"
+    ]
+  },
+  "_Plinko.2O65R_gK.js": {
+    "file": "_app/immutable/chunks/Plinko.2O65R_gK.js",
+    "name": "Plinko",
+    "imports": [
+      "_scheduler.CN4FEajw.js",
+      "_index.DJqeu6aJ.js",
+      "_index.8qYHx-Kq.js"
+    ]
+  },
+  "_entry.Bs65xEWi.js": {
+    "file": "_app/immutable/chunks/entry.Bs65xEWi.js",
+    "name": "entry",
+    "imports": [
+      "_scheduler.CN4FEajw.js",
+      "_index.8qYHx-Kq.js"
+    ]
+  },
+  "_index.8qYHx-Kq.js": {
+    "file": "_app/immutable/chunks/index.8qYHx-Kq.js",
+    "name": "index",
+    "imports": [
+      "_scheduler.CN4FEajw.js"
+    ]
+  },
+  "_index.DJqeu6aJ.js": {
+    "file": "_app/immutable/chunks/index.DJqeu6aJ.js",
+    "name": "index",
+    "imports": [
+      "_scheduler.CN4FEajw.js"
+    ]
+  },
+  "_scheduler.CN4FEajw.js": {
+    "file": "_app/immutable/chunks/scheduler.CN4FEajw.js",
+    "name": "scheduler"
+  },
+  "node_modules/.pnpm/@sveltejs+kit@2.5.6_@sveltejs+vite-plugin-svelte@3.1.0_svelte@4.2.15_vite@5.2.9/node_modules/@sveltejs/kit/src/runtime/client/entry.js": {
+    "file": "_app/immutable/entry/start.DhnJvIo9.js",
+    "name": "entry/start",
+    "src": "node_modules/.pnpm/@sveltejs+kit@2.5.6_@sveltejs+vite-plugin-svelte@3.1.0_svelte@4.2.15_vite@5.2.9/node_modules/@sveltejs/kit/src/runtime/client/entry.js",
+    "isEntry": true,
+    "imports": [
+      "_entry.Bs65xEWi.js"
+    ]
+  },
+  "src/lib/assets/logo.svg": {
+    "file": "_app/immutable/assets/logo.Bq7oLjZC.svg",
+    "src": "src/lib/assets/logo.svg"
+  },
+  "src/lib/assets/og_image.jpg": {
+    "file": "_app/immutable/assets/og_image.PzHn9Bxz.jpg",
+    "src": "src/lib/assets/og_image.jpg"
+  }
+}
