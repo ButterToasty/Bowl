@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8"/>
+<meta content="ie=edge" http-equiv="x-ua-compatible"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, shrink-to-fit=no" id="viewport" name="viewport"/>
+<meta content="yes" name="mobile-web-app-capable">
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<title>Vex 7</title>
+<link href="https://buttertoasty.github.io/games1/games/Vex%207/assets/icon.png" rel="icon" type="image/png"/>
+<!-- For apple devices -->
+<link href="https://buttertoasty.github.io/games1/games/Vex%207/assets/icon.png" rel="apple-touch-icon" type="image/png"/>
+<link href="https://buttertoasty.github.io/games1/games/Vex%207/assets/css/app.css" rel="stylesheet" type="text/css">
+
+</link></meta></head>
+<body>
+<div id="content"> </div>
+<div id="loader">Loading...</div>
+<div id="orientation"></div>
+<script type="text/javascript">
+        var _azerionIntegration = {
+            "rtgEnabled": true,
+            "lbEnabled": false,
+            "fbType": "dummy",
+            "alxType": "std",
+            "af": false,
+            "sa": false,
+            "la": false,
+            "bd": 0,
+            "playBtn": true,
+            "cp": false
+        }
+
+
+        var libs = [];
+
+
+        var gameName = "https://buttertoasty.github.io/games1/games/Vex%207/vex7.min.js";
+
+
+        var enableAnalytics, azAdWrapper, _azFeedback;
+
+
+
+
+
+        //This all here is for cache busting;
+        function addScript(src, buster, callback) {
+            var s = document.createElement('script');
+            s.setAttribute('src', src + '?v=' + buster);
+            if (typeof callback === 'function') {
+                s.onload = callback;
+            }
+            document.body.appendChild(s);
+        }
+
+
+
+        addScript('https://buttertoasty.github.io/games1/games/Vex%207/version.js', Date.now(), function() {
+
+            addScript(gameName, version, function() {});
+
+        });
+    </script>
+</body>
+</html>

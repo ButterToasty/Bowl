@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>1v1.LOL</title>
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/lib/jquery.min.js"></script>
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/js/IronSourceRV.js"></script>
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/js/mobileRedirect.js"></script>
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/js/fullscreen.js"></script>
+    <script>
+      var gameLoaded = false;
+      window.addEventListener("beforeunload", function (e) {
+        if (adsVisible || !gameLoaded || !lockedOccured) return null;
+        var confirmationMessage = "Are you sure you want to leave? ";
+        (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+        return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+      });
+      window.alert = function (e) {
+        console.log(e);
+      };
+    </script>
+    <link rel="icon" type="image/png" href="https://buttertoasty.github.io/games1/games/1v1.lol/favicon.png?v2" />
+    <link rel="stylesheet" href="https://buttertoasty.github.io/games1/games/1v1.lol/css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <script type="text/javascript" src="https://buttertoasty.github.io/games1/games/1v1.lol/js/sdkloader/ima3.js"></script>
+
+    <!-- ZONETAG - PLACE INTO HEAD SECTION OR RUN CODE AT STARTUP -->
+    <script>
+      (function (zonefile) {
+        var y = window.location.href
+          .split("#")[0]
+          .split("")
+          .reduce(function (a, b) {
+            return ((a << 5) - a + b.charCodeAt(0)) >>> 1;
+          }, 0);
+        y = (10 + ((y * 7) % 26)).toString(36) + y.toString(36);
+        var drutObj = (window[y] = window[y] || {});
+        function failCpmstarAPI() {
+          var failFn = function (o) {
+            o && typeof o === "object" && o.fail && o.fail();
+          };
+          drutObj && Array.isArray(drutObj.cmd) && drutObj.cmd.forEach(failFn) && (drutObj.cmd.length = 0);
+          window.cpmstarAPI = window["_" + zonefile] = failFn;
+        }
+        var rnd = Math.round(Math.random() * 999999);
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.async = true;
+        s.onerror = failCpmstarAPI;
+        var proto = document.location.protocol;
+        var host = proto == "https:" || proto == "file:" ? "https://server" : "//cdn";
+        if (window.location.hash == "#cpmstarDev") host = "//dev.server";
+        if (window.location.hash == "#cpmstarStaging") host = "//staging.server";
+        s.src = host + ".cpmstar.com/cached/zonefiles/" + zonefile + ".js?rnd=" + rnd;
+        var s2 = document.getElementsByTagName("script")[0];
+        s2.parentNode.insertBefore(s, s2);
+        window.cpmstarAPI = function (o) {
+          (drutObj.cmd = drutObj.cmd || []).push(o);
+        };
+      })("372_49986_1v1");
+      Object.defineProperty(window.performance.__proto__, "measures", Object.getOwnPropertyDescriptor(window.performance.__proto__, "now")),
+        delete window.performance.__proto__.now,
+        (window.performance.__proto__.now = {}),
+        Object.defineProperty(window.performance.__proto__, "now", {
+          get: function () {
+            return this.measures;
+          },
+        }),
+        Object.defineProperty(window.performance.__proto__, "now", {
+          set: function () {
+            Object.defineProperty(window.performance.__proto__, "now", {
+              get: function () {
+                return function () {
+                  return this.measures() / 2;
+                };
+              },
+            });
+          },
+        });
+    </script>
+    <!-- MIDROLL/INTERSTITIAL VIDEO API -->
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/js/cpmstar.js"></script>
+  </head>
+
+  <body>
+    
+
+    <!-- <div id="interAdsContainer" style="display: none;"></div> -->
+    <div id="gameContainer"></div>
+    <div id="loader">
+      <img class="logo" src="https://buttertoasty.github.io/games1/games/1v1.lol/logo.png" />
+      <div class="spinner"></div>
+      <div class="progress">
+        <div class="full"></div>
+      </div>
+    </div>
+
+    <script id="unity-loader" src="https://buttertoasty.github.io/games1/games/1v1.lol/UnityLoader.js"></script>
+    <!--<script src="Build/UnityLoader.js"></script>-->
+    <script>
+      var gameJsonUrl = "https://justbuild.nyc3.cdn.digitaloceanspaces.com/CI/1v1/Prod/162/WebGL.json"; //%gameJsonUrl
+      var hostname = window.location.hostname;
+      if (hostname.indexOf("dev1v1") >= 0 || hostname.indexOf("dev.1v1") >= 0 || hostname.indexOf("test1v1") >= 0 || hostname.indexOf("test.1v1") >= 0) {
+        let urlParams = new URLSearchParams(window.location.search);
+        let queryParam = urlParams.get("version");
+
+        if (queryParam !== undefined && queryParam !== null) {
+          gameJsonUrl = gameJsonUrl.replace(/[0-9][0-9]+/i, queryParam);
+        }
+      }
+      var gameInstance = UnityLoader.instantiate("gameContainer", gameJsonUrl, { onProgress: UnityProgress });
+      //var gameInstance = UnityLoader.instantiate("gameContainer", "Build/WebGL.json", {onProgress: UnityProgress});
+
+      window.unityInstance = gameInstance;
+      var lockedOccured = false;
+
+      function UnityProgress(gameInstance, progress) {
+        if (!gameInstance.Module) {
+          return;
+        }
+        const loader = document.querySelector("#loader");
+        if (!gameInstance.progress) {
+          const progress = document.querySelector("#loader .progress");
+          progress.style.display = "block";
+          gameInstance.progress = progress.querySelector(".full");
+          loader.querySelector(".spinner").style.display = "none";
+        }
+        gameInstance.progress.style.transform = `scaleX(${progress})`;
+        if (progress === 1 && !gameInstance.removeTimeout) {
+          loader.style.display = "none";
+          gameLoaded = true;
+        }
+      }
+
+      document.onkeydown = function (e) {
+        if (e.altKey || e.ctrlKey || e.key == "F1" || e.key == "F2" || e.key == "F3" || e.key == "F4") {
+          e.preventDefault();
+        }
+      };
+
+      document.onmouseup = function (e) {
+        e.preventDefault();
+      };
+
+      document.addEventListener("pointerlockchange", lockChangeAlert, false);
+      document.addEventListener("mozpointerlockchange", lockChangeAlert, false);
+
+      function lockChangeAlert() {
+        if (!lockedOccured && document.pointerLockElement) lockedOccured = true;
+        if (!document.pointerLockElement && lockedOccured) {
+          lockedOccured = false;
+          gameInstance.SendMessage("Pause Menu", "OnCursorUnlocked");
+        }
+      }
+
+
+
+      window.onfocus = function () {
+        //console.log("onfocus");
+        resumeCounter();
+        refresh();
+      };
+
+      window.onblur = function () {
+        //console.log("onblur");
+        pauseCounter();
+      };
+
+    </script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/firebase/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/firebase/firebase-analytics.js"></script>
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/firebase/firebase-auth.js"></script>
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/firebase/firebase-firestore.js"></script>
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/firebase/firebase-remote-config.js"></script>
+
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/js/firebase.js?v=147"></script>
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/js/login.js?v=147"></script>
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/js/firebase-config.js?v=147"></script>
+
+    <script>
+      var hostname = window.location.hostname;
+      if (hostname.indexOf("dev1v1") >= 0 || hostname.indexOf("dev.1v1") >= 0 || hostname.indexOf("test1v1") >= 0 || hostname.indexOf("test.1v1") >= 0 || hostname.indexOf("localhost") >= 0) {
+        initializeFireBaseDev();
+      } else {
+        initializeFireBase();
+      }
+
+      initRemoteConfig();
+    </script>
+
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/js/windowResize.js"></script>
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/js/macUserAgent.js"></script>
+    <script>
+
+      fixMacUserAgent();
+    </script>
+    <script src="https://buttertoasty.github.io/games1/games/1v1.lol/js/main.js"></script>
+  </body>
+</html>

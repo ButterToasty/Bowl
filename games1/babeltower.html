@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<script>	
+	window["GD_OPTIONS"] = {
+		"gameId": "2fcaf318a64d4a92a0fce2e9e81f1157",
+		"onEvent": function(event) {
+			switch (event.name) {
+				case "SDK_GAME_START":
+					// advertisement done, resume game logic and unmute audio
+					if (window.bottleScreen){
+						window.bottleScreen.resumeGame()
+					}
+					break;
+				case "SDK_GAME_PAUSE":
+					// pause game logic / mute audio
+					if (window.bottleScreen){
+						window.bottleScreen.pauseGame()
+					}					
+					break;
+				case "SDK_GDPR_TRACKING":
+					// this event is triggered when your user doesn't want to be tracked
+					break;
+				case "SDK_GDPR_TARGETING":
+					// this event is triggered when your user doesn't want personalised targeting of ads and such
+					break;
+			}
+		},
+	};	
+	</script>
+<link href="https://buttertoasty.github.io/games1/games/Babel%20Tower/art/icon16x16.png" rel="shortcut icon"/>
+<style type="text/css">
+
+
+
+        body {
+            background: #000000;
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+<script src="https://buttertoasty.github.io/games1/games/Babel%20Tower/scripts/lz-string.min.js"></script>
+<script src="https://buttertoasty.github.io/games1/games/Babel%20Tower/scripts/phaser.min.js"></script>
+<script src="https://buttertoasty.github.io/games1/games/Babel%20Tower/scripts/hello-compiled.js"></script>
+
+</head>
+<body>
+<div id="thegame"></div>
+</body>
+</html>
