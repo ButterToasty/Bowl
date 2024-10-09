@@ -1,0 +1,13 @@
+{
+"companyName": "DefaultCompany",
+"productName": "Two Ball 3D",
+"dataUrl": "https://buttertoasty.github.io/games1/games/Two%20Ball%203d/files/games/other/TwoBall3D/Build/TwoBall3D.data.unityweb",
+"wasmCodeUrl": "https://buttertoasty.github.io/games1/games/Two%20Ball%203d/files/games/other/TwoBall3D/Build/TwoBall3D.wasm.code.unityweb",
+"wasmFrameworkUrl": "https://buttertoasty.github.io/games1/games/Two%20Ball%203d/files/games/other/TwoBall3D/Build/TwoBall3D.wasm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"backgroundUrl": "https://buttertoasty.github.io/games1/games/Two%20Ball%203d/files/games/other/TwoBall3D/Build/TwoBall3D.jpg",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#FFFFFF"
+}

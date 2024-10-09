@@ -1,0 +1,13 @@
+{
+"companyName": "Juicy Beast Studio",
+"productName": "Burrito Bison",
+"dataUrl": "https://buttertoasty.github.io/games1/games/bison/Build/Web.data.unityweb",
+"asmCodeUrl": "https://buttertoasty.github.io/games1/games/bison/Build/Web.asm.code.unityweb",
+"asmMemoryUrl": "https://buttertoasty.github.io/games1/games/bison/Build/Web.asm.memory.unityweb",
+"asmFrameworkUrl": "https://buttertoasty.github.io/games1/games/bison/Build/Web.asm.framework.unityweb",
+"TOTAL_MEMORY": 536870912,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#000000"
+}

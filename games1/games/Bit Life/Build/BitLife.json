@@ -1,0 +1,16 @@
+{
+"companyName": "Moana Games",
+"productName": "BitLife",
+"productVersion": "1.0",
+"dataUrl": "https://buttertoasty.github.io/games1/games/Bit%20Life/Build/BitLife.data.unityweb",
+"wasmCodeUrl": "https://buttertoasty.github.io/games1/games/Bit%20Life/Build/BitLife.wasm.code.unityweb",
+"wasmFrameworkUrl": "https://buttertoasty.github.io/games1/games/Bit%20Life/Build/BitLife.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.21f1"
+}
