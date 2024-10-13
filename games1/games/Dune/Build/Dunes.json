@@ -1,9 +1,9 @@
 {
 "companyName": "DefaultCompany",
 "productName": "Dunes",
-"dataUrl": "https://buttertoasty.github.io/games1/games/Dune/Build/Dunes.data.unityweb",
-"wasmCodeUrl": "https://buttertoasty.github.io/games1/games/Dune/Build/Dunes.wasm.code.unityweb",
-"wasmFrameworkUrl": "https://buttertoasty.github.io/games1/games/Dune/Build/Dunes.wasm.framework.unityweb",
+"dataUrl": "Dunes.data.unityweb",
+"wasmCodeUrl": "Dunes.wasm.code.unityweb",
+"wasmFrameworkUrl": "Dunes.wasm.framework.unityweb",
 "TOTAL_MEMORY": 268435456,
 "graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
 "webglContextAttributes": {"preserveDrawingBuffer": false},

@@ -1,9 +1,9 @@
 {
 "companyName": "Sam Hogan",
 "productName": "Gons.io",
-"dataUrl": "https://buttertoasty.github.io/games1/games/Gons%20Io/Build/livev0_4_1a.data.unityweb",
-"wasmCodeUrl": "https://buttertoasty.github.io/games1/games/Gons%20Io/Build/livev0_4_1a.wasm.code.unityweb",
-"wasmFrameworkUrl": "https://buttertoasty.github.io/games1/games/Gons%20Io/Build/livev0_4_1a.wasm.framework.unityweb",
+"dataUrl": "livev0_4_1a.data.unityweb",
+"wasmCodeUrl": "livev0_4_1a.wasm.code.unityweb",
+"wasmFrameworkUrl": "livev0_4_1a.wasm.framework.unityweb",
 "TOTAL_MEMORY": 268435456,
 "graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
 "webglContextAttributes": {"preserveDrawingBuffer": false},
