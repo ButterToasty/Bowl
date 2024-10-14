@@ -176,7 +176,7 @@
     </details>
   </div>
 
-  <script src="https://buttertoasty.github.io/games1/games/Five%20Nights%20At%20Freddys%202/script.js"></script>
+  <script src="/games1/games/Five%20Nights%20At%20Freddys%202/script.js"></script>
   <script>
     const appElement = document.getElementById('app');
     const launchScreen = document.getElementById('launch');
@@ -215,7 +215,7 @@
       const {storage, vm} = scaffolding;
       storage.addWebStore(
         [storage.AssetType.ImageVector, storage.AssetType.ImageBitmap, storage.AssetType.Sound],
-        (asset) => new URL('https://buttertoasty.github.io/games1/games/Five%20Nights%20At%20Freddys%202/assets/' + asset.assetId + '.' + asset.dataFormat, location).href
+        (asset) => new URL('/games1/games/Five%20Nights%20At%20Freddys%202/assets/' + asset.assetId + '.' + asset.dataFormat, location).href
       );
       storage.onprogress = (total, loaded) => {
         setProgress(0.2 + (loaded / total) * 0.8);

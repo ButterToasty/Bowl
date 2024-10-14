@@ -198,7 +198,7 @@
     </details>
   </div>
 
-  <script src="https://buttertoasty.github.io/games1/games/fnaf4/script.js"></script>
+  <script src="/games1/games/fnaf4/script.js"></script>
   <script>
     const appElement = document.getElementById('app');
     const launchScreen = document.getElementById('launch');
@@ -286,7 +286,7 @@
         
         storage.addWebStore(
           [storage.AssetType.ImageVector, storage.AssetType.ImageBitmap, storage.AssetType.Sound],
-          (asset) => new URL('https://buttertoasty.github.io/games1/games/fnaf4/assets/' + asset.assetId + '.' + asset.dataFormat, location).href
+          (asset) => new URL('/games1/games/fnaf4/assets/' + asset.assetId + '.' + asset.dataFormat, location).href
         );
         return () => new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
